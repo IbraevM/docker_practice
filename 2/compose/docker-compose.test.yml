@@ -1,0 +1,7 @@
+version: "2.3"
+services:
+  test:
+    build: ./test
+    depends_on:
+      - php
+      - nginx 

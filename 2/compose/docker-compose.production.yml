@@ -1,0 +1,19 @@
+version: "2.3"
+services:
+  nginx:
+    image: compose_nginx
+    ports:
+      - "80:80"
+    depends_on:
+      php:
+        condition: service_healthy
+    environment:
+      - ENV=production
+  php:
+    image: compose_php
+    healthcheck:
+      test: ["CMD", "php-fpm", "-t"]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+      start_period: 1s
